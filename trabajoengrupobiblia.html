@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas Bíblicas según tu Estado de Ánimo</title>
+</head>
+<body>
+    <h1>Citas Bíblicas según tu Estado de Ánimo</h1>
+    <p id="mensaje">¿Cómo te sientes hoy?</p>
+    <select id="selectEstadoAnimo">
+        <option value="">Selecciona tu estado de ánimo</option>
+        <option value="feliz">Feliz</option>
+        <option value="triste">Triste</option>
+        <option value="ansioso">Ansioso</option>
+        <option value="agradecido">Agradecido</option>
+        <option value="esperanzado">Esperanzado</option>
+        <option value="temoroso">Temoroso</option>
+        <option value="enojado">Enojado</option>
+    </select>
+    <button onclick="mostrarFrase()">Ver Frase</button>
+
+    <div id="imagenEstadoAnimo"></div>
+
+    <script>
+        var citas = {
+            feliz: ["Alégrense en el Señor y regocíjense, ustedes los justos; canten todos ustedes, los rectos de corazón. (Salmo 32:11)", "Felices aquellos a quienes fueron perdonadas sus faltas y cuyos pecados han sido cubiertos. Feliz el hombre a quien Dios no le tiene en cuenta su pecado. (Romanos 4:7-8)"],
+            triste: ["El Señor está cerca de los quebrantados de corazón; y salva a los de espíritu contrito. (Salmos 34:18)", "Bienaventurados los que lloran, porque ellos recibirán consolación. (Mateo 5:4)"],
+            ansioso: ["Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros. (1 Pedro 5:7)", "No se angustien por nada, sino presenten sus peticiones delante de Dios en toda oración y ruego, con acción de gracias. (Filipenses 4:6)"],
+            agradecido: ["Dad gracias en todo, porque esta es la voluntad de Dios para con vosotros en Cristo Jesús. (1 Tesalonicenses 5:18)", "Entrad por sus puertas con acción de gracias, por sus atrios con alabanza; dadle gracias, bendecid su nombre. (Salmos 100:4)"],
+            esperanzado: ["Dichosos sean los que creyeron sin ver. (Juan 20:29)", "Mantengamos firme la esperanza que profesamos, porque fiel es el que hizo la promesa. (Hebreos 10:22-23)"],
+            temoroso: ["No temas, estoy contigo. Yo soy tu Dios, no tengas miedo. Te fortaleceré, sí, te ayudaré. Te salvaré con mi mano victoriosa. (Isaías 41:10)", "Vivirás tranquilo, porque hay esperanza; estarás protegido y dormirás confiado. (Job 11:18)"],
+            enojado: ["Porque solo un instante dura su enojo, pero toda una vida su bondad. Si por la noche hay llanto, por la mañana habrá gritos de alegría. (Salmo 30:5)", "Desecha la ira y el enojo; no te alteres, que eso empeora las cosas. (Salmos 37:8-20)"]
+        };
+
+        var imagenes = {
+            feliz: "imagenes/felicidad.jpeg",
+            triste: "imagenes/triste.png",
+            ansioso: "imagenes/ansioso.png",
+            agradecido: "imagenes/agradecido.png",
+            esperanzado: "imagenes/esperanzado.png",
+            temoroso: "imagenes/temoroso.png",
+            enojado: "imagenes/enojado.png"
+        };
+
+        function mostrarFrase() {
+            var select = document.getElementById("selectEstadoAnimo");
+            var estadoAnimoActual = select.value;
+
+            if (estadoAnimoActual === "") {
+                document.getElementById("mensaje").innerText = "Por favor, selecciona primero cómo te sientes.";
+                document.getElementById("imagenEstadoAnimo").innerHTML = "";
+                return;
+            }
+
+            var frase = citas[estadoAnimoActual];
+            var fraseAleatoria = frase[Math.floor(Math.random() * frase.length)];
+            document.getElementById("mensaje").innerText = fraseAleatoria;
+
+            var imagen = imagenes[estadoAnimoActual];
+            document.getElementById("imagenEstadoAnimo").innerHTML = `<img src="${imagen}" alt="${estadoAnimoActual}" class="imagen-estado-animo">`;
+        }
+    </script>
+
+    <footer class="footer">
+        <p>Creado por: <a href="https://github.com/santiagocentarti">Santiago Centarti</a>, <a href="https://github.com/fermingarcia02">Fermin Garcia</a>, <a href="https://github.com/Facuriveros">Facundo Riveros</a> y <a href="">Morena Zoto</a></p>
+    </footer>
+</body>
+</html>
